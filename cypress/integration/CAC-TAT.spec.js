@@ -13,19 +13,21 @@ describe('Central de Atendimento ao Cliente TAT', function() {
         const longText = 'ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA,'
         cy.get('#firstName').type('Testador')
         cy.get('#lastName').type('de sites')
-        cy.get('#email').type('EMAILDETESTE@EXEMPLO.COM')
+        cy.get('#email').type('TESTE@EXEMPLO.COM')
         cy.get('#open-text-area').type(longText, {delay: 0 })
         cy.contains('button', 'Enviar').click()
         cy.get('.success').should('be.visible')
     })
 
-    it('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function (){
+    it.only('exibe mensagem de erro ao submeter o formulário com um email com formatação inválida', function (){
         //const longText = 'ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA, ESCREVENDO NA CAIXA,'
         cy.get('#firstName').type('Testador')
         cy.get('#lastName').type('de sites')
         cy.get('#email').type('TESTE@EXEMPLO,COM')
         cy.get('#open-text-area').type('ESCREVENDO')
         cy.contains('button', 'Enviar').click()
+
+        cy.get('.error').should('be.visible')
         
     })
     
